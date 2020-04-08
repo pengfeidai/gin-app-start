@@ -1,37 +1,48 @@
 package main
 
 import (
+	"context"
+	"fmt"
 	"gin-app-start/config"
 	"gin-app-start/router"
+	"log"
+	"net/http"
+	"os"
+	"os/signal"
+	"time"
 )
 
 func main() {
 	router := router.InitRouter()
 
-	router.Run(config.Port)
+	// router.Run(config.Port)
 
 	// 优雅关停
-	// server := &http.Server{
-	// 	Addr:    ":9060",
-	// 	Handler: router,
-	// }
+	server := &http.Server{
+		Addr:         ":9060",
+		Handler:      router,
+		ReadTimeout:  config.ReadTimeout,
+		WriteTimeout: config.WriteTimeout,
+	}
 
-	// go func() {
-	// 	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-	// 		log.Fatalf("listen: %s\n", err)
-	// 	}
-	// }()
+	log.Println(fmt.Sprintf("Listening and serving HTTP on Port: %s, Pid: %d", config.Port, os.Getpid()))
 
-	// quit := make(chan os.Signal)
-	// signal.Notify(quit, os.Interrupt)
-	// <-quit
-	// log.Println("shutdown server...")
+	go func() {
+		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			log.Fatalf("listen: %s\n", err)
+		}
+	}()
 
-	// // 创建10s的超时上下文
-	// ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	// defer cancel()
-	// if err := server.Shutdown(ctx); err != nil {
-	// 	log.Fatal("server shutdown:", err)
-	// }
-	// log.Println("server exiting...")
+	signalChan := make(chan os.Signal)
+	signal.Notify(signalChan, os.Interrupt)
+	<-signalChan
+	log.Println("shutdown server...")
+
+	// 创建10s的超时上下文
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	if err := server.Shutdown(ctx); err != nil {
+		log.Fatal("server shutdown:", err)
+	}
+	log.Println("server exiting...")
 }

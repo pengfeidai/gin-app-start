@@ -13,6 +13,7 @@ import (
 )
 
 func InitRouter() *gin.Engine {
+	// gin.SetMode(config.Mode)
 	router := gin.Default()
 
 	// 404处理
