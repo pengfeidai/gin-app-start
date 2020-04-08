@@ -1,6 +1,7 @@
 package user
 
 import (
+	"gin-app-start/common"
 	"gin-app-start/middleware"
 	"gin-app-start/schema"
 	"log"
@@ -35,7 +36,7 @@ func Login(c *gin.Context) {
 		}
 		ctx.Response(nil, content)
 	} else {
-		ctx.Response("账号或密码错误", nil)
+		ctx.Response(common.LOGIN_FAIL, nil)
 	}
 	return
 }
