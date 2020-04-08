@@ -2,14 +2,14 @@ package health
 
 import (
 	"fmt"
-	"gin-app-start/middleware"
 	"gin-app-start/schema"
+	"gin-app-start/util"
 
 	"github.com/gin-gonic/gin"
 )
 
 func CheckHealth(c *gin.Context) {
-	ctx := middleware.Context{Ctx: c}
+	ctx := util.Context{Ctx: c}
 	// 参数校验
 	// var person Person
 	h := &schema.Health{}
@@ -21,6 +21,6 @@ func CheckHealth(c *gin.Context) {
 	content := map[string]string{
 		"data": fmt.Sprintf("hello %s", name),
 	}
-	ctx.Response(nil, content)
+	ctx.Response(0, nil, content)
 	return
 }

@@ -1,4 +1,4 @@
-package middleware
+package util
 
 import (
 	"log"
@@ -25,7 +25,7 @@ func (c *Context) Validate(p interface{}) error {
 	// }
 	if err := c.Ctx.ShouldBind(p); err != nil {
 		log.Println("param validate err:", err)
-		c.Response(err.Error(), nil)
+		c.Response(400, err.Error(), nil)
 		return err
 	}
 	return nil

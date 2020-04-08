@@ -2,8 +2,8 @@ package user
 
 import (
 	"gin-app-start/common"
-	"gin-app-start/middleware"
 	"gin-app-start/schema"
+	"gin-app-start/util"
 	"log"
 
 	"github.com/gin-gonic/contrib/sessions"
@@ -11,7 +11,7 @@ import (
 )
 
 func Login(c *gin.Context) {
-	ctx := middleware.Context{Ctx: c}
+	ctx := util.Context{Ctx: c}
 
 	// var user schema.User
 	user := &schema.User{}
@@ -34,9 +34,9 @@ func Login(c *gin.Context) {
 		content := map[string]string{
 			"data": "success",
 		}
-		ctx.Response(nil, content)
+		ctx.Response(0, nil, content)
 	} else {
-		ctx.Response(common.LOGIN_FAIL, nil)
+		ctx.Response(401, common.LOGIN_FAIL, nil)
 	}
 	return
 }

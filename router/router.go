@@ -1,9 +1,11 @@
 package router
 
 import (
+	"fmt"
 	"gin-app-start/controller/health"
 	"gin-app-start/controller/user"
 	"gin-app-start/middleware"
+	"gin-app-start/util"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/contrib/sessions"
@@ -12,6 +14,15 @@ import (
 
 func InitRouter() *gin.Engine {
 	router := gin.Default()
+
+	// 404处理
+	router.NoRoute(func(c *gin.Context) {
+		ctx := util.Context{Ctx: c}
+		path := c.Request.URL.Path
+		method := c.Request.Method
+		ctx.Response(404, fmt.Sprintf("%s %s not found", method, path), nil)
+	})
+
 	// 跨域
 	router.Use(cors.Default())
 	// ip白名单

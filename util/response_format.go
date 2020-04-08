@@ -1,4 +1,4 @@
-package middleware
+package util
 
 import (
 	"net/http"
@@ -17,10 +17,10 @@ type response struct {
 	Message interface{} `json:"msg"`
 }
 
-func (c *Context) Response(msg interface{}, content interface{}) {
+func (c *Context) Response(code int, msg interface{}, content interface{}) {
 	if msg == nil {
 		c.Ctx.JSON(http.StatusOK, response{
-			Code:    0,
+			Code:    code,
 			Success: true,
 			Content: content,
 			Message: msg,
@@ -29,7 +29,7 @@ func (c *Context) Response(msg interface{}, content interface{}) {
 	}
 	// 错误格式
 	c.Ctx.JSON(http.StatusOK, response{
-		Code:    -1,
+		Code:    code,
 		Success: false,
 		Content: content,
 		Message: msg,

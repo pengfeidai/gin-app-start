@@ -1,12 +1,15 @@
 package middleware
 
 import (
+	"fmt"
+	"gin-app-start/util"
+
 	"github.com/gin-gonic/gin"
 )
 
 func IPAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		ctx := Context{Ctx: c}
+		ctx := util.Context{Ctx: c}
 		ipList := []string{
 			"127.0.0.1",
 		}
@@ -19,7 +22,7 @@ func IPAuth() gin.HandlerFunc {
 			}
 		}
 		if !flag {
-			ctx.Response(clientIp+" not in ipList", nil)
+			ctx.Response(401, fmt.Sprintf("%s not in ipList", clientIp), nil)
 			c.Abort()
 			return
 		}
