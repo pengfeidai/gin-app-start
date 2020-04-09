@@ -6,6 +6,37 @@
 
 ## 目录结构
 
+```go
+gin-app-strat
+├── app
+|    ├── common // constant定义、mongo、mysql、redis连接等
+|    ├── controller
+|    ├── middleware // 中间件
+|    ├── model
+|    ├── public // 静态资源
+|    ├── router // 路由
+|    ├── schema // 定义controller中使用的struct，用于参数绑定、校验
+|    ├── service 
+|    ├── util  // 常用方法
+├── config
+|   └── config.go
+├── logs
+|   ├── access.log
+|   └── error.log
+├── test
+|   ├── controller
+|   ├── service
+|   └── model
+├── .gitignore
+├── go.mod
+├── go.sum
+├── main.go // 启动文件
+└── README.md
+```
+
+该目录结构是结合自己之前写 `nodejs` 的工作经验来的，其中也是参考了 `egg.js` 的目录结构，自己认为结构还是比较清晰，一目了然。
+
+
 ## 功能点
 - [x] 使用 go modules 初始化项目
 - [x] 安装 Gin 框架

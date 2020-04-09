@@ -2,8 +2,8 @@ package health
 
 import (
 	"fmt"
-	"gin-app-start/schema"
-	"gin-app-start/util"
+	"gin-app-start/app/schema"
+	"gin-app-start/app/util"
 
 	"github.com/gin-gonic/gin"
 )

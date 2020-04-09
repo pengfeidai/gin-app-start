@@ -2,10 +2,10 @@ package router
 
 import (
 	"fmt"
-	"gin-app-start/controller/health"
-	"gin-app-start/controller/user"
-	"gin-app-start/middleware"
-	"gin-app-start/util"
+	"gin-app-start/app/controller/health"
+	"gin-app-start/app/controller/user"
+	"gin-app-start/app/middleware"
+	"gin-app-start/app/util"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/contrib/sessions"

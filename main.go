@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"gin-app-start/app/router"
 	"gin-app-start/config"
-	"gin-app-start/router"
 	"log"
 	"net/http"
 	"os"

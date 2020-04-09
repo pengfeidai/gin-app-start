@@ -1,9 +1,9 @@
 package user
 
 import (
-	"gin-app-start/common"
-	"gin-app-start/schema"
-	"gin-app-start/util"
+	"gin-app-start/app/common"
+	"gin-app-start/app/schema"
+	"gin-app-start/app/util"
 	"log"
 
 	"github.com/gin-gonic/contrib/sessions"

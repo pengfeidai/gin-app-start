@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"fmt"
-	"gin-app-start/util"
+	"gin-app-start/app/util"
 
 	"github.com/gin-gonic/gin"
 )

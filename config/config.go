@@ -11,6 +11,6 @@ const (
 	MongoUrl = "mongodb://127.0.0.1:27017/gin-app-start"
 
 	// 日志文件
-	AccessLogName = "log/access.log"
-	ErrorLogName  = "log/error.log"
+	AccessLogName = "logs/access.log"
+	ErrorLogName  = "logs/error.log"
 )
