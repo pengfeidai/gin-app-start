@@ -6,6 +6,7 @@
 
 ## 目录结构
 
+## 功能点
 - [x] 使用 go modules 初始化项目
 - [x] 安装 Gin 框架
 - [x] 支持优雅地重启或停止
@@ -20,10 +21,10 @@
     - [] 日志记录
     - [] 异常捕获
     - [] 限流
-- [ ] 存储
+- [x] 存储
     - [ ] MySQL
     - [ ] Redis
-    - [ ] MongoDB
+    - [x] MongoDB
 
 ## 快速开始
 
@@ -52,7 +53,7 @@ cd gin-app-start
 
 go run main.go
 
-输出如下 `Listening and serving HTTP on :9060`，表示 Http Server 启动成功。
+输出如下 `Listening and serving HTTP on Port: :9060, Pid: 15932`，表示 Http Server 启动成功。
 ```
 
 #### 健康检查

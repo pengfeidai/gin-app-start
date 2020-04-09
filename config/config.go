@@ -7,6 +7,9 @@ const (
 	ReadTimeout  = 120000
 	WriteTimeout = 120000
 
+	// mongo
+	MongoUrl = "mongodb://127.0.0.1:27017/gin-app-start"
+
 	// 日志文件
 	AccessLogName = "log/access.log"
 	ErrorLogName  = "log/error.log"
