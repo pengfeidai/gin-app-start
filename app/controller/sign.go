@@ -1,4 +1,4 @@
-package user
+package controller
 
 import (
 	"gin-app-start/app/common"

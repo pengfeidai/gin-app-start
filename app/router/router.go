@@ -2,8 +2,7 @@ package router
 
 import (
 	"fmt"
-	"gin-app-start/app/controller/health"
-	"gin-app-start/app/controller/user"
+	"gin-app-start/app/controller"
 	"gin-app-start/app/middleware"
 	"gin-app-start/app/util"
 
@@ -33,11 +32,11 @@ func InitRouter() *gin.Engine {
 	router.Use(sessions.Sessions("session_id", store))
 
 	// 登录登出
-	router.POST("/login", user.Login)
+	router.POST("/login", controller.Login)
 	// router.POST("/lgout", user.Lgout)
 
 	// 健康检查
-	router.GET("/health_check", health.CheckHealth)
+	router.GET("/health_check", controller.CheckHealth)
 
 	// user
 	return router

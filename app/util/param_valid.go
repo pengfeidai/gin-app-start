@@ -4,18 +4,6 @@ import (
 	"log"
 )
 
-// var (
-// 	Uni      *ut.UniversalTranslator
-// 	Validate *validator.Validate
-// )
-
-// func InitValidate() {
-// 	en := en.New()
-// 	zh := zh.New()
-// 	Uni = ut.New(en, zh)
-// 	Validate = validator.New()
-// }
-
 func (c *Context) Validate(p interface{}) error {
 	// validata := validator.New()
 	// if err := validata.Struct(p); err != nil {

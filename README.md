@@ -6,11 +6,14 @@
 
 ## 目录结构
 
+该目录结构是结合自己之前写 `nodejs` 的工作经验来的，其中也是参考了 `egg.js` 的目录结构，自认为结构还是比较清晰，一目了然，也欢迎大家提出好的建议，共同学习。
+
 ```go
 gin-app-strat
 ├── app
-|    ├── common // constant定义、mongo、mysql、redis连接等
+|    ├── common // constant定义、errorCode等
 |    ├── controller
+|    ├── database // mysql、mongo、redis等
 |    ├── middleware // 中间件
 |    ├── model
 |    ├── public // 静态资源
@@ -33,9 +36,6 @@ gin-app-strat
 ├── main.go // 启动文件
 └── README.md
 ```
-
-该目录结构是结合自己之前写 `nodejs` 的工作经验来的，其中也是参考了 `egg.js` 的目录结构，自己认为结构还是比较清晰，一目了然。
-
 
 ## 功能点
 - [x] 使用 go modules 初始化项目

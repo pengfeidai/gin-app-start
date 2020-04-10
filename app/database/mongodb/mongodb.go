@@ -1,9 +1,8 @@
-package common
+package mongo
 
 import (
 	"fmt"
 	"gin-app-start/config"
-	"log"
 
 	"gopkg.in/mgo.v2"
 )
@@ -12,20 +11,20 @@ var Session *mgo.Session
 
 // 初始化
 func init() {
-	Session, err := mgo.Dial(config.MongoUrl)
+	s, err := mgo.Dial(config.MongoUrl)
 	if err != nil {
 		fmt.Println("mongo connection error: ", err)
 		panic(err.Error())
 	}
-	Session.SetMode(mgo.Monotonic, true)
+	s.SetMode(mgo.Monotonic, true)
 	fmt.Println("mongo connection open to: ", config.MongoUrl)
+	Session = s
 }
 
 func connect(db, collection string) (*mgo.Session, *mgo.Collection) {
 	// 每次操作copy一份 Session,避免每次创建Session
 	ms := Session.Copy()
 	c := ms.DB(db).C(collection)
-	ms.SetMode(mgo.Monotonic, true)
 	return ms, c
 }
 
@@ -146,13 +145,9 @@ func Count(db, collection string, query interface{}) (int, error) {
 }
 
 // 是否存在
-func IsExist(db, collection string) bool {
+func IsExist(db, collection string, query interface{}) bool {
 	ms, c := connect(db, collection)
 	defer ms.Close()
-
-	count, err := c.Count()
-	if err != nil {
-		log.Fatal(err)
-	}
+	count, _ := c.Find(query).Count()
 	return count > 0
 }
