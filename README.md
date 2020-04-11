@@ -51,7 +51,7 @@ gin-app-strat
     - [x] ip白名单
     - [] 日志记录
     - [] 异常捕获
-    - [] 限流
+    - [x] 限流
 - [x] 存储
     - [ ] MySQL
     - [ ] Redis

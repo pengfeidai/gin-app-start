@@ -27,6 +27,8 @@ func InitRouter() *gin.Engine {
 	router.Use(cors.Default())
 	// ip白名单
 	router.Use(middleware.IPAuth())
+	// 限流
+	// router.Use(middleware.Limit(config.LimitNum))
 
 	store := sessions.NewCookieStore([]byte("secret"))
 	router.Use(sessions.Sessions("session_id", store))
