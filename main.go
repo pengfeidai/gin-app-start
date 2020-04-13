@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"gin-app-start/app/database/mysql"
 	"gin-app-start/app/router"
 	"gin-app-start/config"
 	"log"
@@ -14,6 +15,10 @@ import (
 
 func main() {
 	router := router.InitRouter()
+
+	// mysql初始化
+	db := mysql.Init()
+	defer db.Close()
 
 	// router.Run(config.Port)
 

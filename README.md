@@ -53,7 +53,7 @@ gin-app-strat
     - [] 异常捕获
     - [x] 限流
 - [x] 存储
-    - [ ] MySQL
+    - [x] MySQL
     - [ ] Redis
     - [x] MongoDB
 
