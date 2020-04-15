@@ -10,8 +10,10 @@ const (
 	LimitNum = 20
 
 	// mysql
-	DRIVER   = "mysql"
-	MysqlUrl = "root:123456@(127.0.0.1:3306)/test?charset=utf8&parseTime=True&loc=Local"
+	DRIVER       = "mysql"
+	MysqlUrl     = "root:123456@(127.0.0.1:3306)/test?charset=utf8&parseTime=True&loc=Local"
+	MaxIdleConns = 10
+	MaxOpenConns = 100
 
 	// mongo
 	MongoUrl = "mongodb://127.0.0.1:27017"

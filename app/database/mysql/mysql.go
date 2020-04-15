@@ -1,23 +1,28 @@
 package mysql
 
 import (
-	"fmt"
 	"gin-app-start/config"
+	"log"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-var MysqlClient *gorm.DB
+var Pool *gorm.DB
 
 func Init() *gorm.DB {
 	var err error
-	MysqlClient, err = gorm.Open(config.DRIVER, config.MysqlUrl)
-	MysqlClient.LogMode(true)
+	db, err := gorm.Open(config.DRIVER, config.MysqlUrl)
 	if err != nil {
-		fmt.Println("mysql connection error: ", err)
+		log.Println("mysql connection error: ", err)
 		panic(err)
 	}
-	fmt.Println("mysql connection open to: ", config.MysqlUrl)
-	return MysqlClient
+	// db.DB().SetMaxIdleConns(config.MaxIdleConns)
+	// db.DB().SetMaxOpenConns(config.MaxOpenConns)
+	// 全局禁用表名复数
+	db.SingularTable(true)
+	db.LogMode(true)
+	log.Println("mysql connection open to: ", config.MysqlUrl)
+	Pool = db
+	return Pool
 }
