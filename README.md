@@ -54,7 +54,7 @@ gin-app-strat
     - [x] 限流
 - [x] 存储
     - [x] MySQL
-    - [ ] Redis
+    - [x] Redis
     - [x] MongoDB
 
 ## 快速开始
