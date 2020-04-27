@@ -22,6 +22,10 @@ func Init() *gorm.DB {
 	// 全局禁用表名复数
 	db.SingularTable(true)
 	db.LogMode(true)
+
+	// 注册表
+	db.AutoMigrate()
+
 	log.Println("mysql connection open to: ", config.MysqlUrl)
 	Pool = db
 	return Pool

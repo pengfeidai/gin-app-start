@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"gin-app-start/app/database/mysql"
+	"gin-app-start/app/database/redis"
 	"gin-app-start/app/router"
 	"gin-app-start/config"
 	"log"
@@ -14,17 +15,26 @@ import (
 )
 
 func main() {
-	router := router.InitRouter()
-
 	// mysql初始化
 	db := mysql.Init()
 	defer db.Close()
+
+	if config.UseRedis {
+		// 初始化redis服务
+		redis.Init()
+	}
+
+	RunServer()
+}
+
+func RunServer() {
+	router := router.InitRouter()
 
 	// router.Run(config.Port)
 
 	// 优雅关停
 	server := &http.Server{
-		Addr:         ":9060",
+		Addr:         config.Port,
 		Handler:      router,
 		ReadTimeout:  config.ReadTimeout,
 		WriteTimeout: config.WriteTimeout,
