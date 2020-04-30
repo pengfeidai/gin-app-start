@@ -2,26 +2,25 @@ server:
   port: ':9060'
   mode: 'release'
   readTimeout: 120000
-	writeTimeout: 120000
-	limitNum: 20
+  writeTimeout: 120000
+  limitNum: 20
 
 redis:
   host: '127.0.0.1'
   port: 6379
   password: ''
   db: 0
-  useRedis: false
+  use: false
 
 mysql:
   user: root
   password: '123456'
-  host: '127.0.0.1'
-  port: 3306
+  path: '127.0.0.1:3306'
   database: 'test'
   config: 'charset=utf8&parseTime=True&loc=Local'
-	driver: 'mysql'
-	maxIdleConns: 10
-	maxOpenConns: 100
+  driver: 'mysql'
+  maxIdleConns: 10
+  maxOpenConns: 100
   log: false
   # url: 'root:123456@(127.0.0.1:3306)/test?charset=utf8&parseTime=True&loc=Local'
 

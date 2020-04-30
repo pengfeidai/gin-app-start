@@ -58,6 +58,7 @@ gin-app-strat
     - [x] MongoDB
 - [x] 线上部署
    - [x] dockerfile
+   - [x] 自定义配置文件
 
 ## 快速开始
 

@@ -8,17 +8,20 @@ import (
 )
 
 var Session *mgo.Session
+var Db string
 
 // 初始化
 func init() {
-	s, err := mgo.Dial(config.MongoUrl)
+	config := config.Conf.Mongo
+	s, err := mgo.Dial(config.Url)
 	if err != nil {
 		fmt.Println("mongo connection error: ", err)
 		panic(err.Error())
 	}
 	s.SetMode(mgo.Monotonic, true)
-	fmt.Println("mongo connection open to: ", config.MongoUrl)
+	fmt.Println("mongo connection open to: ", config.Url)
 	Session = s
+	Db = config.Database
 }
 
 func connect(db, collection string) (*mgo.Session, *mgo.Collection) {

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"time"
 
 	"gopkg.in/yaml.v2"
 )
@@ -18,11 +19,11 @@ type Yaml struct {
 }
 
 type Server struct {
-	Port         string `yaml:"port"`
-	Mode         string `yaml:"mode"`
-	ReadTimeout  int    `yaml:"readTimeout"`
-	WriteTimeout int    `yaml:"writeTimeout"`
-	LimitNum     int    `yaml:"limitNum"`
+	Port         string        `yaml:"port"`
+	Mode         string        `yaml:"mode"`
+	ReadTimeout  time.Duration `yaml:"readTimeout"`
+	WriteTimeout time.Duration `yaml:"writeTimeout"`
+	LimitNum     int           `yaml:"limitNum"`
 }
 
 type Redis struct {
@@ -30,17 +31,16 @@ type Redis struct {
 	Port     int    `yaml:"port"`
 	Password string `yaml:"password"`
 	Db       int    `yaml:"db"`
-	UseRedis bool   `yaml:"useRedis"`
+	Use      bool   `yaml:"use"`
 }
 
 type Mysql struct {
 	User         string `yaml:"user"`
 	Password     string `yaml:"password"`
-	Host         string `yaml:"host"`
-	Port         int    `yaml:"port"`
+	Path         string `yaml:"path"`
 	Database     string `yaml:"database"`
 	Config       string `yaml:"config"`
-	Driver       string `yaml:"drive"`
+	Driver       string `yaml:"driver"`
 	MaxIdleConns int    `yaml:"maxIdleConns"`
 	MaxOpenConns int    `yaml:"maxOpenConns"`
 	Log          bool   `yaml:"log"`
@@ -58,7 +58,7 @@ type Log struct {
 
 var Conf *Yaml
 
-const defaultConfigFile = "config/config.yaml"
+const defaultConfigFile = "config.yaml"
 
 func Init() {
 	c := &Yaml{}

@@ -15,11 +15,14 @@ import (
 )
 
 func main() {
+	// 配置文件初始化
+	config.Init()
+
 	// mysql初始化
 	db := mysql.Init()
 	defer db.Close()
 
-	if config.UseRedis {
+	if config.Conf.Redis.Use {
 		// 初始化redis服务
 		redis.Init()
 	}
@@ -30,17 +33,17 @@ func main() {
 func RunServer() {
 	router := router.InitRouter()
 
-	// router.Run(config.Port)
+	// router.Run(config.Conf.Server.Port)
 
 	// 优雅关停
 	server := &http.Server{
-		Addr:         config.Port,
+		Addr:         config.Conf.Server.Port,
 		Handler:      router,
-		ReadTimeout:  config.ReadTimeout,
-		WriteTimeout: config.WriteTimeout,
+		ReadTimeout:  config.Conf.Server.ReadTimeout,
+		WriteTimeout: config.Conf.Server.WriteTimeout,
 	}
 
-	log.Println(fmt.Sprintf("Listening and serving HTTP on Port: %s, Pid: %d", config.Port, os.Getpid()))
+	log.Println(fmt.Sprintf("Listening and serving HTTP on Port: %s, Pid: %d", config.Conf.Server.Port, os.Getpid()))
 
 	go func() {
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {

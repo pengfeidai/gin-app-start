@@ -12,7 +12,9 @@ var Pool *gorm.DB
 
 func Init() *gorm.DB {
 	var err error
-	db, err := gorm.Open(config.DRIVER, config.MysqlUrl)
+	config := config.Conf.Mysql
+	url := config.User + ":" + config.Password + "@(" + config.Path + ")/" + config.Database + "?" + config.Config
+	db, err := gorm.Open(config.Driver, url)
 	if err != nil {
 		log.Println("mysql connection error: ", err)
 		panic(err)
@@ -26,7 +28,7 @@ func Init() *gorm.DB {
 	// 注册表
 	db.AutoMigrate()
 
-	log.Println("mysql connection open to: ", config.MysqlUrl)
+	log.Println("mysql connection open to: ", url)
 	Pool = db
 	return Pool
 }

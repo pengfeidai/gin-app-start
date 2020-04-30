@@ -3,17 +3,19 @@ package redis
 import (
 	"log"
 
+	"gin-app-start/config"
+
 	"github.com/go-redis/redis"
-	"github.com/onsi/ginkgo/config"
 )
 
 var Redis *redis.Client
 
 func Init() {
+	config := config.Conf.Redis
 	client := redis.NewClient(&redis.Options{
-		Addr:     config.Addr,
+		Addr:     config.Host,
 		Password: config.Password, // no password set
-		DB:       config.DB,       // use default DB
+		DB:       config.Db,       // use default DB
 	})
 	pong, err := client.Ping().Result()
 	if err != nil {
