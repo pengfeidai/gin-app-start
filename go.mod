@@ -14,4 +14,5 @@ require (
 	github.com/onsi/gomega v1.9.0 // indirect
 	google.golang.org/genproto v0.0.0-20200424135956-bca184e23272 // indirect
 	gopkg.in/mgo.v2 v2.0.0-20190816093944-a6b53ec6cb22
+	gopkg.in/yaml.v2 v2.2.8
 )
