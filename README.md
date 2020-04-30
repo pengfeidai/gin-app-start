@@ -56,6 +56,8 @@ gin-app-strat
     - [x] MySQL
     - [x] Redis
     - [x] MongoDB
+- [x] 线上部署
+   - [x] dockerfile
 
 ## 快速开始
 
