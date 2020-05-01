@@ -26,4 +26,6 @@ RUN CGO_ENABLED=0 GOARCH=amd64 GOOS=linux go build -a -o gin-app-start .
 
 COPY config.yaml /opt/conf
 
+EXPOSE 9060
+
 CMD ["./gin-app-start", "-c=/opt/conf/config.yaml"]
