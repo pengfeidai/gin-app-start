@@ -10,9 +10,8 @@ require (
 	github.com/go-redis/redis v6.15.7+incompatible
 	github.com/gorilla/sessions v1.2.0 // indirect
 	github.com/jinzhu/gorm v1.9.12
-	github.com/onsi/ginkgo v1.12.0
+	github.com/onsi/ginkgo v1.12.0 // indirect
 	github.com/onsi/gomega v1.9.0 // indirect
-	google.golang.org/genproto v0.0.0-20200424135956-bca184e23272 // indirect
 	gopkg.in/mgo.v2 v2.0.0-20190816093944-a6b53ec6cb22
 	gopkg.in/yaml.v2 v2.2.8
 )
