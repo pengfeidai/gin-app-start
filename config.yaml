@@ -4,13 +4,13 @@ server:
   readTimeout: 120000
   writeTimeout: 120000
   limitNum: 20
+  # 是否使用redis
+  useRedis: false
 
 redis:
-  host: '127.0.0.1'
-  port: 6379
-  password: ''
+  Addr: '127.0.0.1:6379'
+  password: '123456'
   db: 0
-  use: false
 
 mysql:
   user: root

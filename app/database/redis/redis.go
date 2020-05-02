@@ -13,7 +13,7 @@ var Redis *redis.Client
 func Init() {
 	config := config.Conf.Redis
 	client := redis.NewClient(&redis.Options{
-		Addr:     config.Host,
+		Addr:     config.Addr,
 		Password: config.Password, // no password set
 		DB:       config.Db,       // use default DB
 	})
@@ -22,6 +22,6 @@ func Init() {
 		log.Println("redis connection error: ", err)
 		panic(err)
 	}
-	log.Panicln("redis connect ping response:", pong)
+	log.Println("redis connect ping response:", pong)
 	Redis = client
 }

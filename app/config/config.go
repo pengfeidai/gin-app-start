@@ -24,14 +24,13 @@ type Server struct {
 	ReadTimeout  time.Duration `yaml:"readTimeout"`
 	WriteTimeout time.Duration `yaml:"writeTimeout"`
 	LimitNum     int           `yaml:"limitNum"`
+	UserRedis    bool          `yaml:"useRedis"`
 }
 
 type Redis struct {
-	Host     string `yaml:"host"`
-	Port     int    `yaml:"port"`
+	Addr     string `yaml:"Addr"`
 	Password string `yaml:"password"`
 	Db       int    `yaml:"db"`
-	Use      bool   `yaml:"use"`
 }
 
 type Mysql struct {

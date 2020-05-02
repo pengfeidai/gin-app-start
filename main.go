@@ -22,7 +22,7 @@ func main() {
 	db := mysql.Init()
 	defer db.Close()
 
-	if config.Conf.Redis.Use {
+	if config.Conf.Server.UserRedis {
 		// 初始化redis服务
 		redis.Init()
 	}
