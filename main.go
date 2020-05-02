@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"gin-app-start/app/config"
 	"gin-app-start/app/database/mysql"
 	"gin-app-start/app/database/redis"
 	"gin-app-start/app/router"
-	"gin-app-start/config"
 	"log"
 	"net/http"
 	"os"
@@ -56,7 +56,7 @@ func RunServer() {
 	<-signalChan
 	log.Println("shutdown server...")
 
-	// 创建10s的超时上下文
+	// 创建5s的超时上下文
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := server.Shutdown(ctx); err != nil {

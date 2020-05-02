@@ -2,7 +2,7 @@ package mongo
 
 import (
 	"fmt"
-	"gin-app-start/config"
+	"gin-app-start/app/config"
 
 	"gopkg.in/mgo.v2"
 )

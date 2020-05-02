@@ -3,7 +3,7 @@ package redis
 import (
 	"log"
 
-	"gin-app-start/config"
+	"gin-app-start/app/config"
 
 	"github.com/go-redis/redis"
 )

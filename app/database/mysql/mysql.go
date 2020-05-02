@@ -1,7 +1,7 @@
 package mysql
 
 import (
-	"gin-app-start/config"
+	"gin-app-start/app/config"
 	"log"
 
 	"github.com/jinzhu/gorm"
