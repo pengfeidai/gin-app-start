@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"syscall"
 	"time"
 )
 
@@ -19,8 +20,8 @@ func main() {
 	config.Init()
 
 	// mysql初始化
-	db := mysql.Init()
-	defer db.Close()
+	mysql.Init()
+	defer mysql.DB.Close()
 
 	if config.Conf.Server.UserRedis {
 		// 初始化redis服务
@@ -51,8 +52,9 @@ func RunServer() {
 		}
 	}()
 
+	// 创建系统信号接收器
 	signalChan := make(chan os.Signal)
-	signal.Notify(signalChan, os.Interrupt)
+	signal.Notify(signalChan, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
 	<-signalChan
 	log.Println("shutdown server...")
 

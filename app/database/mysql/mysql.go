@@ -8,9 +8,9 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-var Pool *gorm.DB
+var DB *gorm.DB
 
-func Init() *gorm.DB {
+func Init() {
 	var err error
 	config := config.Conf.Mysql
 	url := config.User + ":" + config.Password + "@(" + config.Path + ")/" + config.Database + "?" + config.Config
@@ -23,12 +23,11 @@ func Init() *gorm.DB {
 	// db.DB().SetMaxOpenConns(config.MaxOpenConns)
 	// 全局禁用表名复数
 	db.SingularTable(true)
-	db.LogMode(true)
+	db.LogMode(config.Log)
 
 	// 注册表
 	db.AutoMigrate()
 
 	log.Println("mysql connection open to: ", url)
-	Pool = db
-	return Pool
+	DB = db
 }
