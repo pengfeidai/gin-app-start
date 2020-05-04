@@ -12,25 +12,27 @@
 gin-app-strat
 ├── app
 |    ├── common // constant定义、errorCode等
+|    ├── config // 定义config的struct，路由加载
+|    |     └── config.go
 |    ├── controller
 |    ├── database // mysql、mongo、redis等
 |    ├── middleware // 中间件
 |    ├── model
 |    ├── public // 静态资源
-|    ├── router // 路由
+|    ├── router // 路由分组、路由聚合加载
 |    ├── schema // 定义controller中使用的struct，用于参数绑定、校验
 |    ├── service 
 |    ├── util  // 常用方法
-├── config
-|   └── config.go
 ├── logs
 |   ├── access.log
 |   └── error.log
-├── test
+├── test  // 测试用例
 |   ├── controller
 |   ├── service
 |   └── model
 ├── .gitignore
+├── config.yaml  // 配置文件
+├── Dockerfile
 ├── go.mod
 ├── go.sum
 ├── main.go // 启动文件
@@ -47,11 +49,13 @@ gin-app-strat
   - [x] 参数验证（validator.v9）
     - [x] 模型绑定和验证
     - [] 自定义验证器
-- [x] 路由中间件
-    - [x] ip白名单
-    - [] 日志记录
-    - [] 异常捕获
-    - [x] 限流
+- [x] 路由
+    - [x] 分组、聚合
+    - [x] 路由中间件
+        - [x] ip白名单
+        - [] 日志记录
+        - [] 异常捕获
+        - [x] 限流
 - [x] 存储
     - [x] MySQL
     - [x] Redis
