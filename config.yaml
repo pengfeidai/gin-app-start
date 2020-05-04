@@ -29,3 +29,6 @@ mongo:
 log:
   accessLogName: 'logs/access.log'
   errorLogName: 'logs/error.log'
+  
+url:
+  prefix: '/api/v1/gin-app-start'

@@ -15,6 +15,7 @@ type Yaml struct {
 	Mysql  `yaml:"mysql"`
 	Mongo  `yaml:"mongo"`
 	Log    `yaml:"log"`
+	Url    `yaml:"url"`
 }
 
 type Server struct {
@@ -50,6 +51,10 @@ type Mongo struct {
 type Log struct {
 	AccessLogName string `yaml:"accessLogName"`
 	ErrorLogName  string `yaml:"errorLogName"`
+}
+
+type Url struct {
+	Prefix string `yaml:"prefix"`
 }
 
 var Conf *Yaml

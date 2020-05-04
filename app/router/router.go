@@ -2,7 +2,8 @@ package router
 
 import (
 	"fmt"
-	"gin-app-start/app/controller"
+	"gin-app-start/app/config"
+
 	"gin-app-start/app/middleware"
 	"gin-app-start/app/util"
 
@@ -14,7 +15,7 @@ import (
 func InitRouter() *gin.Engine {
 	// gin.SetMode(config.Mode)
 	router := gin.Default()
-
+	config := config.Conf
 	// 404处理
 	router.NoRoute(func(c *gin.Context) {
 		ctx := util.Context{Ctx: c}
@@ -26,19 +27,17 @@ func InitRouter() *gin.Engine {
 	// 跨域
 	router.Use(cors.Default())
 	// ip白名单
-	router.Use(middleware.IPAuth())
+	// router.Use(middleware.IPAuth())
 	// 限流
-	// router.Use(middleware.Limit(config.LimitNum))
+	router.Use(middleware.Limit(config.LimitNum))
 
 	store := sessions.NewCookieStore([]byte("secret"))
 	router.Use(sessions.Sessions("session_id", store))
 
-	// 登录登出
-	router.POST("/login", controller.Login)
-	// router.POST("/lgout", user.Lgout)
-
-	// 健康检查
-	router.GET("/health_check", controller.CheckHealth)
+	// 路由分组加载
+	group := router.Group(config.Url.Prefix)
+	InitHealthCheckRouter(group)
+	InitUserRouter(group)
 
 	// user
 	return router
