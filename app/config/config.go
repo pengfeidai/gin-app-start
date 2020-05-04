@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"time"
 
 	"gopkg.in/yaml.v2"
 )
@@ -19,12 +18,10 @@ type Yaml struct {
 }
 
 type Server struct {
-	Port         int           `yaml:"port"`
-	Mode         string        `yaml:"mode"`
-	ReadTimeout  time.Duration `yaml:"readTimeout"`
-	WriteTimeout time.Duration `yaml:"writeTimeout"`
-	LimitNum     int           `yaml:"limitNum"`
-	UserRedis    bool          `yaml:"useRedis"`
+	Port      int    `yaml:"port"`
+	Mode      string `yaml:"mode"`
+	LimitNum  int    `yaml:"limitNum"`
+	UserRedis bool   `yaml:"useRedis"`
 }
 
 type Redis struct {
