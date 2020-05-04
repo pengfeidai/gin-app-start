@@ -38,13 +38,13 @@ func RunServer() {
 
 	// 优雅关停
 	server := &http.Server{
-		Addr:         config.Conf.Server.Port,
+		Addr:         fmt.Sprintf(":%d", config.Conf.Server.Port),
 		Handler:      router,
 		ReadTimeout:  config.Conf.Server.ReadTimeout,
 		WriteTimeout: config.Conf.Server.WriteTimeout,
 	}
 
-	log.Println(fmt.Sprintf("Listening and serving HTTP on Port: %s, Pid: %d", config.Conf.Server.Port, os.Getpid()))
+	log.Println(fmt.Sprintf("Listening and serving HTTP on Port: %d, Pid: %d", config.Conf.Server.Port, os.Getpid()))
 
 	go func() {
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
@@ -59,7 +59,7 @@ func RunServer() {
 	log.Println("shutdown server...")
 
 	// 创建5s的超时上下文
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
 	defer cancel()
 	if err := server.Shutdown(ctx); err != nil {
 		log.Fatal("server shutdown:", err)

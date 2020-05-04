@@ -19,7 +19,7 @@ type Yaml struct {
 }
 
 type Server struct {
-	Port         string        `yaml:"port"`
+	Port         int           `yaml:"port"`
 	Mode         string        `yaml:"mode"`
 	ReadTimeout  time.Duration `yaml:"readTimeout"`
 	WriteTimeout time.Duration `yaml:"writeTimeout"`

@@ -1,5 +1,5 @@
 server:
-  port: ':9060'
+  port: 9060
   mode: 'release'
   readTimeout: 120000
   writeTimeout: 120000

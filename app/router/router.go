@@ -20,6 +20,7 @@ func InitRouter() *gin.Engine {
 		ctx := util.Context{Ctx: c}
 		path := c.Request.URL.Path
 		method := c.Request.Method
+		fmt.Println(">>>>>>>>>>>>", c.Request.RemoteAddr)
 		ctx.Response(404, fmt.Sprintf("%s %s not found", method, path), nil)
 	})
 
