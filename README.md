@@ -56,13 +56,13 @@ gin-app-strat
         - [] 日志记录
         - [] 异常捕获
         - [x] 限流
-- [x] Session
+- [x] [Session](https://github.com/gin-contrib/sessions)
     - [x] cookie-based
     - [x] Redis
 - [x] 存储
-    - [x] MySQL
-    - [x] Redis
-    - [x] MongoDB
+    - [x] [MySQL](https://github.com/jinzhu/gorm)
+    - [x] [Redis](https://github.com/go-redis/redis)
+    - [x] [MongoDB](https://www.godoc.org/gopkg.in/mgo.v2)
 - [x] 线上部署
    - [x] dockerfile
    - [x] 自定义配置文件
