@@ -8,7 +8,9 @@ import (
 	"gin-app-start/app/util"
 
 	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/contrib/sessions"
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
+	"github.com/gin-contrib/sessions/redis"
 	"github.com/gin-gonic/gin"
 )
 
@@ -31,7 +33,16 @@ func InitRouter() *gin.Engine {
 	// 限流
 	router.Use(middleware.Limit(config.LimitNum))
 
-	store := sessions.NewCookieStore([]byte("secret"))
+	var store sessions.Store
+	if config.Server.UserRedis {
+		store, _ = redis.NewStore(config.Session.Size, "tcp", config.Redis.Addr, config.Redis.Password, []byte("secret"))
+	} else {
+		store = cookie.NewStore([]byte("secret"))
+	}
+	// store.Options(sessions.Options{
+	// 	HttpOnly: true,
+	// 	MaxAge:   60 * 15,
+	// })
 	router.Use(sessions.Sessions("session_id", store))
 
 	// 路由分组加载

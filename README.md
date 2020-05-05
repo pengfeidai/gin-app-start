@@ -56,6 +56,9 @@ gin-app-strat
         - [] 日志记录
         - [] 异常捕获
         - [x] 限流
+- [x] Session
+    - [x] cookie-based
+    - [x] Redis
 - [x] 存储
     - [x] MySQL
     - [x] Redis

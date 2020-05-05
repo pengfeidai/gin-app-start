@@ -10,12 +10,13 @@ import (
 )
 
 type Yaml struct {
-	Server `yaml:"server"`
-	Redis  `yaml:"redis"`
-	Mysql  `yaml:"mysql"`
-	Mongo  `yaml:"mongo"`
-	Log    `yaml:"log"`
-	Url    `yaml:"url"`
+	Server  `yaml:"server"`
+	Redis   `yaml:"redis"`
+	Mysql   `yaml:"mysql"`
+	Mongo   `yaml:"mongo"`
+	Session `yaml:"session"`
+	Log     `yaml:"log"`
+	Url     `yaml:"url"`
 }
 
 type Server struct {
@@ -46,6 +47,15 @@ type Mysql struct {
 type Mongo struct {
 	Database string `yaml:"database"`
 	Url      string `yaml:"url"`
+}
+
+type Session struct {
+	Key      string `yaml:"key"`
+	Size     int    `yaml:"size"`
+	MaxAge   int    `yaml:"maxAge"`
+	Path     string `yaml:"path"`
+	Domain   string `yaml:"domain"`
+	HttpOnly bool   `yaml:"httpOnly"`
 }
 
 type Log struct {

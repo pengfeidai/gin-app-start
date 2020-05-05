@@ -26,6 +26,14 @@ mongo:
   database: 'test'
   url: 'mongodb://127.0.0.1:27017'
 
+session:
+  key: 'DSESSION'
+  size: 10
+  maxAge: 86400000
+  path: '/'
+  domain: ''
+  httpOnly: true
+
 log:
   accessLogName: 'logs/access.log'
   errorLogName: 'logs/error.log'
