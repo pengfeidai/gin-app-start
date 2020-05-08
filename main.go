@@ -3,7 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
+	"gin-app-start/app/common"
 	"gin-app-start/app/config"
+	mongo "gin-app-start/app/database/mongodb"
 	"gin-app-start/app/database/mysql"
 	"gin-app-start/app/database/redis"
 	"gin-app-start/app/router"
@@ -19,10 +21,17 @@ func main() {
 	// 配置文件初始化
 	config.Init()
 
-	// mysql初始化
+	// 日志初始化
+	common.InitLog()
+
+	// 默认使用mysql
 	mysql.Init()
 	defer mysql.DB.Close()
 
+	if config.Conf.Server.UserMongo {
+		// mongo初始化
+		mongo.Init()
+	}
 	if config.Conf.Server.UserRedis {
 		// 初始化redis服务
 		redis.Init()

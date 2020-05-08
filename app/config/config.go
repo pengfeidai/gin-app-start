@@ -23,6 +23,7 @@ type Server struct {
 	Port      int    `yaml:"port"`
 	Mode      string `yaml:"mode"`
 	LimitNum  int    `yaml:"limitNum"`
+	UserMongo bool   `yaml:"useMongo"`
 	UserRedis bool   `yaml:"useRedis"`
 }
 
@@ -59,8 +60,8 @@ type Session struct {
 }
 
 type Log struct {
-	AccessLogName string `yaml:"accessLogName"`
-	ErrorLogName  string `yaml:"errorLogName"`
+	AccessLogFile string `yaml:"accessLogFile"`
+	ErrorLogFile  string `yaml:"errorLogFile"`
 }
 
 type Url struct {

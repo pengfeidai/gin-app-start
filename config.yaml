@@ -2,6 +2,8 @@ server:
   port: 9060
   mode: 'release'
   limitNum: 20
+  #是否使用mongo
+  useMongo: false
   # 是否使用redis
   useRedis: false
 
@@ -35,8 +37,8 @@ session:
   httpOnly: true
 
 log:
-  accessLogName: 'logs/access.log'
-  errorLogName: 'logs/error.log'
+  accessLogFile: 'logs/access.log'
+  errorLogFile: 'logs/error.log'
   
 url:
   prefix: '/api/v1/gin-app-start'
