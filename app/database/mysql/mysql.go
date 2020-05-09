@@ -1,8 +1,8 @@
 package mysql
 
 import (
+	"gin-app-start/app/common"
 	"gin-app-start/app/config"
-	"log"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -12,11 +12,12 @@ var DB *gorm.DB
 
 func Init() {
 	var err error
+	logger := common.Logger
 	config := config.Conf.Mysql
 	url := config.User + ":" + config.Password + "@(" + config.Path + ")/" + config.Database + "?" + config.Config
 	db, err := gorm.Open(config.Driver, url)
 	if err != nil {
-		log.Println("mysql connection error: ", err)
+		logger.Error("mysql connection error: ", err)
 		panic(err)
 	}
 	// db.DB().SetMaxIdleConns(config.MaxIdleConns)
@@ -28,6 +29,6 @@ func Init() {
 	// 注册表
 	db.AutoMigrate()
 
-	log.Println("mysql connection open to: ", url)
+	logger.Info("mysql connection open to: ", url)
 	DB = db
 }

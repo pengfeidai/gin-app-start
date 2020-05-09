@@ -9,7 +9,6 @@ import (
 	"gin-app-start/app/database/mysql"
 	"gin-app-start/app/database/redis"
 	"gin-app-start/app/router"
-	"log"
 	"net/http"
 	"os"
 	"os/signal"
@@ -18,12 +17,6 @@ import (
 )
 
 func main() {
-	// 配置文件初始化
-	config.Init()
-
-	// 日志初始化
-	common.InitLog()
-
 	// 默认使用mysql
 	mysql.Init()
 	defer mysql.DB.Close()
@@ -41,8 +34,8 @@ func main() {
 }
 
 func RunServer() {
+	logger := common.Logger
 	router := router.InitRouter()
-
 	// router.Run(config.Conf.Server.Port)
 
 	// 优雅关停
@@ -51,11 +44,11 @@ func RunServer() {
 		Handler: router,
 	}
 
-	log.Println(fmt.Sprintf("Listening and serving HTTP on Port: %d, Pid: %d", config.Conf.Server.Port, os.Getpid()))
+	logger.Info(fmt.Sprintf("Listening and serving HTTP on Port: %d, Pid: %d", config.Conf.Server.Port, os.Getpid()))
 
 	go func() {
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Fatalf("listen: %s\n", err)
+			logger.Errorf("listen: %s\n", err)
 		}
 	}()
 
@@ -63,13 +56,13 @@ func RunServer() {
 	signalChan := make(chan os.Signal)
 	signal.Notify(signalChan, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
 	<-signalChan
-	log.Println("shutdown server...")
+	logger.Info("shutdown server...")
 
 	// 创建5s的超时上下文
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := server.Shutdown(ctx); err != nil {
-		log.Fatal("server shutdown:", err)
+		logger.Error("server shutdown:", err)
 	}
-	log.Println("server exiting...")
+	logger.Info("server exiting...")
 }

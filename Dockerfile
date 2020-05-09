@@ -10,6 +10,7 @@ ENV GOPROXY="https://goproxy.cn,direct" \
 
 # 创建目录,保存代码
 RUN mkdir -p /opt/workspace/gin-app-start \
+  && mkdir -p /data/gin-app-start/logs \
   && mkdir -p /opt/conf/
 
 # 指定RUN、CMD与ENTRYPOINT命令的工作目录

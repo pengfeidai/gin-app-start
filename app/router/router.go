@@ -15,9 +15,9 @@ import (
 )
 
 func InitRouter() *gin.Engine {
-	// gin.SetMode(config.Mode)
-	router := gin.Default()
 	config := config.Conf
+	gin.SetMode(gin.TestMode)
+	router := gin.Default()
 	// 404处理
 	router.NoRoute(func(c *gin.Context) {
 		ctx := util.Context{Ctx: c}
@@ -28,6 +28,7 @@ func InitRouter() *gin.Engine {
 
 	// 跨域
 	router.Use(cors.Default())
+	router.Use(middleware.Logger())
 	// ip白名单
 	// router.Use(middleware.IPAuth())
 	// 限流

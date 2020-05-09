@@ -53,7 +53,7 @@ gin-app-strat
     - [x] 分组、聚合
     - [x] 路由中间件
         - [x] ip白名单
-        - [] 日志记录
+        - [x] [日志记录](https://github.com/sirupsen/logrus)
         - [] 异常捕获
         - [x] 限流
 - [x] [Session](https://github.com/gin-contrib/sessions)

@@ -37,8 +37,10 @@ session:
   httpOnly: true
 
 log:
-  accessLogFile: 'logs/access.log'
-  errorLogFile: 'logs/error.log'
+  debug: true
+  maxAge: 15
+  fileName: 'access.log'
+  dirName: '/data/gin-app-start/logs'
   
 url:
   prefix: '/api/v1/gin-app-start'

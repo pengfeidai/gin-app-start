@@ -9,6 +9,7 @@ import (
 )
 
 func CheckHealth(c *gin.Context) {
+
 	ctx := util.Context{Ctx: c}
 	// 参数校验
 	// var person Person

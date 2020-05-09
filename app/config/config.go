@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"time"
 
 	"gopkg.in/yaml.v2"
 )
@@ -60,8 +61,10 @@ type Session struct {
 }
 
 type Log struct {
-	AccessLogFile string `yaml:"accessLogFile"`
-	ErrorLogFile  string `yaml:"errorLogFile"`
+	Debug    bool          `yaml:"debug"`
+	MaxAge   time.Duration `yaml:"maxAge"`
+	FileName string        `yaml:"fileName"`
+	DirName  string        `yaml:"dirName"`
 }
 
 type Url struct {
@@ -72,7 +75,7 @@ var Conf *Yaml
 
 const defaultConfigFile = "config.yaml"
 
-func Init() {
+func init() {
 	c := &Yaml{}
 	configFile := flag.String("c", defaultConfigFile, "help config path")
 	flag.Parse()
