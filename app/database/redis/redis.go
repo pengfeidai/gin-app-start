@@ -1,13 +1,13 @@
 package redis
 
 import (
-	"log"
-
+	"gin-app-start/app/common"
 	"gin-app-start/app/config"
 
 	"github.com/go-redis/redis"
 )
 
+var logger = common.Logger
 var Redis *redis.Client
 
 func Init() {
@@ -19,9 +19,9 @@ func Init() {
 	})
 	pong, err := client.Ping().Result()
 	if err != nil {
-		log.Println("redis connection error: ", err)
+		logger.Error("redis connection error: ", err)
 		panic(err)
 	}
-	log.Println("redis connect ping response:", pong)
+	logger.Info("redis connect ping response:", pong)
 	Redis = client
 }

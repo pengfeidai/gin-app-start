@@ -1,8 +1,8 @@
 package util
 
-import (
-	"log"
-)
+import "gin-app-start/app/common"
+
+var logger = common.Logger
 
 func (c *Context) Validate(p interface{}) error {
 	// validata := validator.New()
@@ -12,7 +12,7 @@ func (c *Context) Validate(p interface{}) error {
 	// 	return err
 	// }
 	if err := c.Ctx.ShouldBind(p); err != nil {
-		log.Println("param validate err:", err)
+		logger.Error("param validate err:", err)
 		c.Response(400, err.Error(), nil)
 		return err
 	}

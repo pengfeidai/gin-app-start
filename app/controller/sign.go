@@ -2,13 +2,15 @@ package controller
 
 import (
 	"gin-app-start/app/common"
+
 	"gin-app-start/app/schema"
 	"gin-app-start/app/util"
-	"log"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
+
+var logger = common.Logger
 
 func Login(c *gin.Context) {
 	session := sessions.Default(c)
@@ -27,7 +29,7 @@ func Login(c *gin.Context) {
 	// json
 	name := user.Name
 	password := user.Password
-	log.Println("name:", name, "password:", password)
+	logger.Info("name:", name, "password:", password)
 
 	// todo从db验证
 	if name == "admin" && password == "admin" {
