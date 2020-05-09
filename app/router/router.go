@@ -16,8 +16,8 @@ import (
 
 func InitRouter() *gin.Engine {
 	config := config.Conf
-	gin.SetMode(gin.TestMode)
-	router := gin.Default()
+	gin.SetMode(config.Mode)
+	router := gin.New()
 	// 404处理
 	router.NoRoute(func(c *gin.Context) {
 		ctx := util.Context{Ctx: c}
