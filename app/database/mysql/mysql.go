@@ -9,10 +9,10 @@ import (
 )
 
 var DB *gorm.DB
+var logger = common.Logger
 
 func Init() {
 	var err error
-	logger := common.Logger
 	config := config.Conf.Mysql
 	url := config.User + ":" + config.Password + "@(" + config.Path + ")/" + config.Database + "?" + config.Config
 	db, err := gorm.Open(config.Driver, url)

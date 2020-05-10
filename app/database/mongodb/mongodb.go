@@ -1,8 +1,8 @@
 package mongo
 
 import (
-	"fmt"
 	"gin-app-start/app/config"
+	"log"
 
 	"gopkg.in/mgo.v2"
 )
@@ -15,11 +15,11 @@ func Init() {
 	config := config.Conf.Mongo
 	s, err := mgo.Dial(config.Url)
 	if err != nil {
-		fmt.Println("mongo connection error: ", err)
+		log.Println("mongo connection error: ", err)
 		panic(err.Error())
 	}
 	s.SetMode(mgo.Monotonic, true)
-	fmt.Println("mongo connection open to: ", config.Url)
+	log.Println("mongo connection open to: ", config.Url)
 	Session = s
 	Db = config.Database
 }

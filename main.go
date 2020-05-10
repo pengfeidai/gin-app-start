@@ -9,12 +9,15 @@ import (
 	"gin-app-start/app/database/mysql"
 	"gin-app-start/app/database/redis"
 	"gin-app-start/app/router"
+	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
 )
+
+var logger = common.Logger
 
 func main() {
 	// 默认使用mysql
@@ -34,7 +37,6 @@ func main() {
 }
 
 func RunServer() {
-	logger := common.Logger
 	router := router.InitRouter()
 	// router.Run(config.Conf.Server.Port)
 
@@ -44,11 +46,11 @@ func RunServer() {
 		Handler: router,
 	}
 
-	logger.Info(fmt.Sprintf("Listening and serving HTTP on Port: %d, Pid: %d", config.Conf.Server.Port, os.Getpid()))
+	log.Println(fmt.Sprintf("Listening and serving HTTP on Port: %d, Pid: %d", config.Conf.Server.Port, os.Getpid()))
 
 	go func() {
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			logger.Errorf("listen: %s\n", err)
+			logger.Fatalf("listen: %s\n", err)
 		}
 	}()
 

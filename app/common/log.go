@@ -5,6 +5,7 @@ import (
 	"gin-app-start/app/config"
 	"os"
 	"path"
+	"strings"
 	"time"
 
 	rotatelogs "github.com/lestrrat/go-file-rotatelogs"
@@ -33,32 +34,35 @@ func init() {
 		Logger.SetLevel(logrus.InfoLevel)
 		//设置输出
 		Logger.SetOutput(bufio.NewWriter(file))
-
-		// 设置 rotatelogs
-		logWriter, _ := rotatelogs.New(
-			// 分割后的文件名称
-			fileName+".%Y-%m-%d.log",
-			// 生成软链，指向最新日志文件
-			rotatelogs.WithLinkName(fileName),
-			// 设置最大保存时间(15天)
-			rotatelogs.WithMaxAge(config.MaxAge*24*time.Hour),
-			// 设置日志切割时间间隔(1天)
-			rotatelogs.WithRotationTime(24*time.Hour),
-		)
-
-		writeMap := lfshook.WriterMap{
-			logrus.InfoLevel:  logWriter,
-			logrus.FatalLevel: logWriter,
-			logrus.DebugLevel: logWriter,
-			logrus.WarnLevel:  logWriter,
-			logrus.ErrorLevel: logWriter,
-			logrus.PanicLevel: logWriter,
-		}
-
-		Logger.AddHook(lfshook.NewHook(writeMap, &logrus.JSONFormatter{
-			TimestampFormat: "2006-01-02 15:04:05",
-		}))
+		writeFile(fileName, config.MaxAge)
 	} else {
 		Logger.SetLevel(logrus.DebugLevel)
 	}
+}
+
+func writeFile(fileName string, maxAge time.Duration) {
+	// 设置 rotatelogs
+	logWriter, _ := rotatelogs.New(
+		// 分割后的文件名称
+		strings.Replace(fileName, ".log", "", -1)+".%Y-%m-%d.log",
+		// 生成软链，指向最新日志文件
+		rotatelogs.WithLinkName(fileName),
+		// 设置最大保存时间
+		rotatelogs.WithMaxAge(maxAge*24*time.Hour),
+		// 设置日志切割时间间隔(1天)
+		rotatelogs.WithRotationTime(24*time.Hour),
+	)
+
+	writeMap := lfshook.WriterMap{
+		logrus.InfoLevel:  logWriter,
+		logrus.FatalLevel: logWriter,
+		logrus.DebugLevel: logWriter,
+		logrus.WarnLevel:  logWriter,
+		logrus.ErrorLevel: logWriter,
+		logrus.PanicLevel: logWriter,
+	}
+
+	Logger.AddHook(lfshook.NewHook(writeMap, &logrus.JSONFormatter{
+		TimestampFormat: TIME_FORMAT,
+	}))
 }

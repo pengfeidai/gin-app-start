@@ -38,8 +38,8 @@ session:
 
 log:
   debug: true
-  maxAge: 15
-  fileName: 'access.log'
+  maxAge: 7
+  fileName: 'server.log'
   dirName: '/data/gin-app-start/logs'
   
 url:

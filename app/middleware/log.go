@@ -33,7 +33,7 @@ func Logger() gin.HandlerFunc {
 				"latencyTime": latencyTime,
 			}).Info()
 		} else {
-			now := time.Now().Format("2006-01-02 15:04:05")
+			now := time.Now().Format(common.TIME_FORMAT)
 			common.Logger.Infof("%s | %3d | %13v | %15s | %s  %s",
 				now,
 				statusCode,
