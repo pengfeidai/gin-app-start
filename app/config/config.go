@@ -44,6 +44,7 @@ type Mysql struct {
 	MaxIdleConns int    `yaml:"maxIdleConns"`
 	MaxOpenConns int    `yaml:"maxOpenConns"`
 	Log          bool   `yaml:"log"`
+	AutoMigrate  bool   `yaml:"autoMigrate"`
 }
 
 type Mongo struct {

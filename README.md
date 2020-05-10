@@ -63,6 +63,7 @@ gin-app-strat
     - [x] Redis
 - [x] 存储
     - [x] [MySQL](https://github.com/jinzhu/gorm)
+      - [x] AutoMigrate
     - [x] [Redis](https://github.com/go-redis/redis)
     - [x] [MongoDB](https://www.godoc.org/gopkg.in/mgo.v2)
 - [x] 线上部署

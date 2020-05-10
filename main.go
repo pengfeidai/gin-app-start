@@ -8,6 +8,7 @@ import (
 	mongo "gin-app-start/app/database/mongodb"
 	"gin-app-start/app/database/mysql"
 	"gin-app-start/app/database/redis"
+	"gin-app-start/app/database/table"
 	"gin-app-start/app/router"
 	"log"
 	"net/http"
@@ -24,11 +25,15 @@ func main() {
 	mysql.Init()
 	defer mysql.DB.Close()
 
-	if config.Conf.Server.UserMongo {
+	if config.Conf.AutoMigrate {
+		table.Init()
+	}
+
+	if config.Conf.UserMongo {
 		// mongo初始化
 		mongo.Init()
 	}
-	if config.Conf.Server.UserRedis {
+	if config.Conf.UserRedis {
 		// 初始化redis服务
 		redis.Init()
 	}
@@ -38,15 +43,15 @@ func main() {
 
 func RunServer() {
 	router := router.InitRouter()
-	// router.Run(config.Conf.Server.Port)
+	// router.Run(config.Conf.Port)
 
 	// 优雅关停
 	server := &http.Server{
-		Addr:    fmt.Sprintf(":%d", config.Conf.Server.Port),
+		Addr:    fmt.Sprintf(":%d", config.Conf.Port),
 		Handler: router,
 	}
 
-	log.Println(fmt.Sprintf("Listening and serving HTTP on Port: %d, Pid: %d", config.Conf.Server.Port, os.Getpid()))
+	log.Println(fmt.Sprintf("Listening and serving HTTP on Port: %d, Pid: %d", config.Conf.Port, os.Getpid()))
 
 	go func() {
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
