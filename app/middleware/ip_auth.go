@@ -2,14 +2,13 @@ package middleware
 
 import (
 	"fmt"
-	"gin-app-start/app/util"
 
 	"github.com/gin-gonic/gin"
 )
 
 func IPAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		ctx := util.Context{Ctx: c}
+		ctx := Context{Ctx: c}
 		ipList := []string{
 			"127.0.0.1",
 		}

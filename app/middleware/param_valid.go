@@ -1,8 +1,4 @@
-package util
-
-import "gin-app-start/app/common"
-
-var logger = common.Logger
+package middleware
 
 func (c *Context) Validate(p interface{}) error {
 	// validata := validator.New()

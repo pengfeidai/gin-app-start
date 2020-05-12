@@ -2,19 +2,17 @@ package controller
 
 import (
 	"fmt"
+	"gin-app-start/app/middleware"
 	"gin-app-start/app/schema"
-	"gin-app-start/app/util"
 
 	"github.com/gin-gonic/gin"
 )
 
 func CheckHealth(c *gin.Context) {
-
-	ctx := util.Context{Ctx: c}
+	ctx := middleware.Context{Ctx: c}
 	// 参数校验
-	// var person Person
-	h := &schema.Health{}
-	if err := ctx.Validate(h); err != nil {
+	var p schema.Health
+	if err := ctx.Validate(&p); err != nil {
 		return
 	}
 

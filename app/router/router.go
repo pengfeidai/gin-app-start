@@ -5,7 +5,6 @@ import (
 	"gin-app-start/app/config"
 
 	"gin-app-start/app/middleware"
-	"gin-app-start/app/util"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/sessions"
@@ -20,7 +19,7 @@ func InitRouter() *gin.Engine {
 	router := gin.New()
 	// 404处理
 	router.NoRoute(func(c *gin.Context) {
-		ctx := util.Context{Ctx: c}
+		ctx := middleware.Context{Ctx: c}
 		path := c.Request.URL.Path
 		method := c.Request.Method
 		ctx.Response(404, fmt.Sprintf("%s %s not found", method, path), nil)
@@ -51,7 +50,6 @@ func InitRouter() *gin.Engine {
 	// 路由分组加载
 	group := router.Group(config.Url.Prefix)
 	InitHealthCheckRouter(group)
-	InitUserRouter(group)
 
 	// user
 	return router
