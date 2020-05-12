@@ -32,7 +32,8 @@ mongo:
 session:
   key: 'DSESSION'
   size: 10
-  maxAge: 86400000
+  # 7 * 86400 7天
+  maxAge: 604800  
   path: '/'
   domain: ''
   httpOnly: true

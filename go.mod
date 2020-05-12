@@ -3,6 +3,7 @@ module gin-app-start
 go 1.13
 
 require (
+	github.com/GoAdminGroup/go-admin v1.2.10
 	github.com/fastly/go-utils v0.0.0-20180712184237-d95a45783239 // indirect
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-contrib/sessions v0.0.3

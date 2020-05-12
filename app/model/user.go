@@ -14,5 +14,5 @@ type User struct {
 	Avatar   string    `json:"avatar" gorm:"size:64" description:"头像"`
 	CreateAt time.Time `json:"createAt" gorm:"type:datetime" description:"创建时间"`
 	UpdateAt time.Time `json:"updateAt" gorm:"type:datetime" description:"更新时间"`
-	Invaild  string    `json:"invaild" gorm:"type:char(1);default:'N'" description:"更新时间"`
+	Invaild  string    `json:"invaild" gorm:"type:char(1);default:'N'" description:"是否有效"`
 }

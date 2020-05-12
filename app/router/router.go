@@ -26,13 +26,12 @@ func InitRouter() *gin.Engine {
 		ctx.Response(404, fmt.Sprintf("%s %s not found", method, path), nil)
 	})
 
-	// 跨域
-	router.Use(cors.Default())
-	router.Use(middleware.Logger())
-	// ip白名单
-	// router.Use(middleware.IPAuth())
-	// 限流
-	router.Use(middleware.Limit())
+	// 中间件
+	router.Use(
+		cors.Default(),
+		middleware.Recovery(),
+		middleware.Logger(),
+	)
 
 	var store sessions.Store
 	if config.Server.UserRedis {
@@ -40,10 +39,13 @@ func InitRouter() *gin.Engine {
 	} else {
 		store = cookie.NewStore([]byte("secret"))
 	}
-	// store.Options(sessions.Options{
-	// 	HttpOnly: true,
-	// 	MaxAge:   60 * 15,
-	// })
+
+	store.Options(sessions.Options{
+		Path:     config.Session.Path,
+		HttpOnly: config.Session.HttpOnly,
+		MaxAge:   config.Session.MaxAge,
+	})
+
 	router.Use(sessions.Sessions("session_id", store))
 
 	// 路由分组加载

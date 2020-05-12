@@ -56,7 +56,7 @@ gin-app-strat
         - [x] [日志记录](https://github.com/sirupsen/logrus)
           - [x] 日志按天分割、保存到文件（看需要是否扩展到ES等）
           - [x] 输出流
-        - [] 异常捕获
+        - [x] 异常捕获
         - [x] 限流
 - [x] [Session](https://github.com/gin-contrib/sessions)
     - [x] cookie-based

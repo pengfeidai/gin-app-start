@@ -10,6 +10,8 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+var logger = common.Logger
+
 func Logger() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		uri := c.Request.RequestURI
@@ -25,7 +27,7 @@ func Logger() gin.HandlerFunc {
 		statusCode := c.Writer.Status()
 		ip := c.ClientIP()
 		if !config.Conf.Log.Debug {
-			common.Logger.WithFields(logrus.Fields{
+			logger.WithFields(logrus.Fields{
 				"clientIp":    ip,
 				"statusCode":  statusCode,
 				"reqMethod":   method,
@@ -34,7 +36,7 @@ func Logger() gin.HandlerFunc {
 			}).Info()
 		} else {
 			now := time.Now().Format(common.TIME_FORMAT)
-			common.Logger.Infof("%s | %3d | %13v | %15s | %s  %s",
+			logger.Infof("%s | %3d | %13v | %15s | %s  %s",
 				now,
 				statusCode,
 				latencyTime,
