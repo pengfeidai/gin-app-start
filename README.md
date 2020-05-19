@@ -44,17 +44,15 @@ gin-app-strat
 - [x] 安装 Gin 框架
 - [x] 支持优雅地重启或停止
 - [x] 规划项目目录
-- [x] 常用方法封装
-  - [x] 返回数据format
-  - [x] 参数验证（validator.v9）
-    - [x] 模型绑定和验证
-    - [] 自定义验证器
 - [x] 路由
     - [x] 分组、聚合
     - [x] 路由中间件
-        - [x] ip白名单
+        - [x] 参数校验
+          - [x] 模型绑定和验证
+          - [] 自定义验证器
+        - [x] 返回数据format
         - [x] [日志记录](https://github.com/sirupsen/logrus)
-          - [x] 日志按天分割、保存到文件（看需要是否扩展到ES等）
+          - [x] 日志按天分割，暂时保存到文件
           - [x] 输出流
         - [x] 异常捕获
         - [x] 限流
@@ -66,6 +64,9 @@ gin-app-strat
       - [x] AutoMigrate
     - [x] [Redis](https://github.com/go-redis/redis)
     - [x] [MongoDB](https://www.godoc.org/gopkg.in/mgo.v2)
+- [x] 常用中间件
+  - [x] 常用方法common.go，如uuid
+  - [x] 发送邮件
 - [x] 线上部署
    - [x] dockerfile
    - [x] 自定义配置文件

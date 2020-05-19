@@ -45,3 +45,10 @@ log:
   
 url:
   prefix: '/api/v1/gin-app-start'
+
+mail:
+  host: ''
+  port: ''
+  from: ''
+  password: ''
+
