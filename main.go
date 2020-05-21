@@ -47,11 +47,11 @@ func RunServer() {
 
 	// 优雅关停
 	server := &http.Server{
-		Addr:    fmt.Sprintf(":%d", config.Conf.Port),
+		Addr:    fmt.Sprintf(":%d", config.Conf.Server.Port),
 		Handler: router,
 	}
 
-	log.Println(fmt.Sprintf("Listening and serving HTTP on Port: %d, Pid: %d", config.Conf.Port, os.Getpid()))
+	log.Println(fmt.Sprintf("Listening and serving HTTP on Port: %d, Pid: %d", config.Conf.Server.Port, os.Getpid()))
 
 	go func() {
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {

@@ -28,6 +28,9 @@ mongo:
   database: 'test'
   url: 'mongodb://127.0.0.1:27017'
 
+es:
+  host: 'http://127.0.0.1:9200'
+
 session:
   key: 'DSESSION'
   size: 10
@@ -48,7 +51,7 @@ url:
 
 mail:
   host: ''
-  port: ''
+  port: 
   from: ''
   password: ''
 

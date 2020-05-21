@@ -64,8 +64,9 @@ gin-app-strat
       - [x] AutoMigrate
     - [x] [Redis](https://github.com/go-redis/redis)
     - [x] [MongoDB](https://www.godoc.org/gopkg.in/mgo.v2)
+    - [x] [ElasticSearch](https://github.com/olivere/elastic)
 - [x] 常用中间件
-  - [x] 常用方法common.go，如uuid
+  - [x] 常用方法common.go，如：uuid
   - [x] 发送邮件
 - [x] 线上部署
    - [x] dockerfile

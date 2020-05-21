@@ -19,6 +19,7 @@ type Yaml struct {
 	Log     `yaml:"log"`
 	Url     `yaml:"url"`
 	Mail    `yaml:"mail"`
+	Es      `yaml:"es"`
 }
 
 type Server struct {
@@ -78,6 +79,10 @@ type Mail struct {
 	Port     int    `yaml:"port"`
 	From     string `yaml:"from"`
 	Password string `yaml:"password"`
+}
+
+type Es struct {
+	Host string `yaml:"host"`
 }
 
 var Conf *Yaml
