@@ -66,7 +66,8 @@ gin-app-strat
     - [x] [MongoDB](https://www.godoc.org/gopkg.in/mgo.v2)
     - [x] [ElasticSearch](https://github.com/olivere/elastic)
 - [x] 常用中间件
-  - [x] 常用方法common.go，如：uuid
+  - [x] http请求封装
+  - [x] 常用方法util.go，如：uuid
   - [x] 发送邮件
 - [x] 线上部署
    - [x] dockerfile
