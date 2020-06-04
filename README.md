@@ -1,5 +1,5 @@
 # gin-app-start
-基于 [Gin](https://github.com/gin-gonic/gin) 封装的开发框架，目录结构清晰，包含了一些常用中间件，功能强大，使用简单。
+基于 [Gin](https://github.com/gin-gonic/gin) 封装的开发框架，目录结构清晰，功能强大，包含了一些常用中间件，如：参数校验、异常捕获等；常用方法：http请求封装，邮件服务等；支持Mysql、Mongodb、Redis等数据库。
 
 持续更新... 
 
