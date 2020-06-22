@@ -2,6 +2,8 @@ RELEASE_DIR = out/gin-app-start
 PROJECT_NAME = gin-app-start
 RELEASE_COPY = app
 
+run:
+	@SERVER_ENV=local go run main.go
 
 build:
 	@go build -a -o gin-app-start .

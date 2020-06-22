@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
 	"time"
 
 	"gopkg.in/yaml.v2"
@@ -87,21 +88,25 @@ type Es struct {
 
 var Conf *Yaml
 
-const defaultConfigFile = "config.yaml"
-
 func init() {
-	c := &Yaml{}
+	// 优先级 环境变量-->命令行-->默认
+	// dir, _ := os.Getwd()
+	// defaultConfigFile := path.Join(dir, "app/config/config.local.yaml")
+	var defaultConfigFile = fmt.Sprintf("app/config/config.%s.yaml", os.Getenv("SERVER_ENV"))
+	// 命令行自定义
 	configFile := flag.String("c", defaultConfigFile, "help config path")
 	flag.Parse()
-	yamlFile, err := ioutil.ReadFile(*configFile)
+	yamlConf, err := ioutil.ReadFile(*configFile)
 	if err != nil {
 		panic(fmt.Errorf("get yamlFile error: %s", err))
 	}
-
-	err = yaml.Unmarshal(yamlFile, c)
+	// 环境变量
+	yamlConf = []byte(os.ExpandEnv(string(yamlConf)))
+	c := &Yaml{}
+	err = yaml.Unmarshal(yamlConf, c)
 	if err != nil {
 		log.Fatalf("config Init Unmarshal: %v", err)
 	}
-	log.Printf("config yamlFile load Init success.")
+	log.Println("config yamlFile load Init success.")
 	Conf = c
 }

@@ -1,0 +1,57 @@
+server:
+  port: 9060
+  mode: 'release'
+  limitNum: 20
+  #是否使用mongo
+  useMongo: false
+  # 是否使用redis
+  useRedis: false
+
+redis:
+  Addr: ${REDIS_ADDR}
+  password: ${REDIS_PASSWORD}
+  db: ${REDIS_DB}
+
+mysql:
+  user: ${MYSQL_USER}
+  password: ${MYSQL_PASSWORD}
+  path: ${MYSQL_PATH}
+  database: ${MYSQL_DB}
+  config: 'charset=utf8&parseTime=True&loc=Local'
+  driver: 'mysql'
+  maxIdleConns: 10
+  maxOpenConns: 100
+  log: false
+  autoMigrate: false
+
+mongo:
+  database: ${MONGO_DB}
+  url: ${MONGO_URL}
+
+es:
+  host: ${ES_HOST}
+
+session:
+  key: 'DSESSION'
+  size: 10
+  # 7 * 86400 7天
+  maxAge: 604800  
+  path: '/'
+  domain: ''
+  httpOnly: true
+
+log:
+  debug: true
+  maxAge: 7
+  fileName: 'server.log'
+  dirName: '/data/gin-app-start/logs'
+  
+url:
+  prefix: '/api/v1/gin-app-start'
+
+mail:
+  host: ${MAIL_HOST}
+  port: ${MAIL_POST}
+  from: ${MAIL_FROM}
+  password: ${MAIL_PASSWORD}
+

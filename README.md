@@ -98,7 +98,8 @@ export GOPROXY=https://goproxy.io
 ```go
 cd gin-app-start
 
-go run main.go
+// 本地启动
+SERVER_ENV=local go run main.go
 
 输出如下 `Listening and serving HTTP on Port: :9060, Pid: 15932`，表示 Http Server 启动成功。
 ```
@@ -109,6 +110,8 @@ go run main.go
 curl -X GET http://127.0.0.1:9060/health_check?name=world
 ```
 
-## 文档
+## 线上部署
+
+线上部署建议使用 `docker` 方式部署，详细可以参考 `dockerfile` 文件，配置文件支持 `命令行` 或者 `环境变量` 的方式。
 
 
