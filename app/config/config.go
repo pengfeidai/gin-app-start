@@ -92,7 +92,7 @@ func init() {
 	// 优先级 环境变量-->命令行-->默认
 	// dir, _ := os.Getwd()
 	// defaultConfigFile := path.Join(dir, "app/config/config.local.yaml")
-	var defaultConfigFile = fmt.Sprintf("app/config/config.%s.yaml", os.Getenv("SERVER_ENV"))
+	var defaultConfigFile = fmt.Sprintf("config/config.%s.yaml", os.Getenv("SERVER_ENV"))
 	// 命令行自定义
 	configFile := flag.String("c", defaultConfigFile, "help config path")
 	flag.Parse()

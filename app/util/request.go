@@ -7,8 +7,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-
-	"github.com/micro/go-micro/v2/logger"
 )
 
 // request get method
