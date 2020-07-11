@@ -1,12 +1,15 @@
 RELEASE_DIR = out/gin-app-start
 PROJECT_NAME = gin-app-start
-RELEASE_COPY = app
+RELEASE_COPY = app config
+VERSION = 1.1.0
+
+LDFLAGS = -ldflags "-X 'main.Version=${VERSION}'"
 
 run:
 	@SERVER_ENV=local go run main.go
 
-build:
-	@go build -a -o gin-app-start .
+build:	
+	@go build ${LDFLAGS} -a -v -o gin-app-start .
 
 docker:
 	@docker build -t gin-app-start:latest .

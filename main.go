@@ -20,7 +20,10 @@ import (
 
 var logger = common.Logger
 
+var Version string
+
 func main() {
+	log.Printf("Version: %s \n", Version)
 	// 默认使用mysql
 	mysql.Init()
 	defer mysql.DB.Close()
