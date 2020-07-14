@@ -32,7 +32,7 @@ type Server struct {
 }
 
 type Redis struct {
-	Addr     string `yaml:"Addr"`
+	Addr     string `yaml:"addr"`
 	Password string `yaml:"password"`
 	Db       int    `yaml:"db"`
 }

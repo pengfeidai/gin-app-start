@@ -8,7 +8,7 @@ server:
   useRedis: false
 
 redis:
-  Addr: ${REDIS_ADDR}
+  addr: ${REDIS_ADDR}
   password: ${REDIS_PASSWORD}
   db: ${REDIS_DB}
 
