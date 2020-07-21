@@ -12,7 +12,7 @@ func CheckHealth(c *gin.Context) {
 	ctx := middleware.Context{Ctx: c}
 	// 参数校验
 	var p schema.Health
-	if err := ctx.Validate(&p); err != nil {
+	if err := ctx.ValidateQuery(&p); err != nil {
 		return
 	}
 

@@ -48,7 +48,7 @@ gin-app-strat
     - [x] 分组、聚合
     - [x] 路由中间件
         - [x] 参数校验
-          - [x] 模型绑定和验证
+          - [x] [模型绑定和验证](https://www.godoc.org/gopkg.in/go-playground/validator.v9)
           - [] 自定义验证器
         - [x] 返回数据format
         - [x] [日志记录](https://github.com/sirupsen/logrus)

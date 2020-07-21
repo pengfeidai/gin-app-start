@@ -29,6 +29,6 @@ func Init() {
 	// 注册表
 	db.AutoMigrate()
 
-	logger.Info("mysql connection open to: ", url)
+	logger.Info("mysql connection open to: ", config.Path)
 	DB = db
 }
