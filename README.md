@@ -65,7 +65,7 @@ gin-app-strat
     - [x] [Redis](https://github.com/go-redis/redis)
     - [x] [MongoDB](https://www.godoc.org/gopkg.in/mgo.v2)
     - [x] [ElasticSearch](https://github.com/olivere/elastic)
-- [x] 常用中间件
+- [x] 常用方法
   - [x] http请求封装
   - [x] 常用方法util.go，如：uuid
   - [x] 发送邮件
