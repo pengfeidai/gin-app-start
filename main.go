@@ -6,7 +6,8 @@ import (
 	"gin-app-start/app/common"
 	"gin-app-start/app/config"
 	mongo "gin-app-start/app/database/mongodb"
-	"gin-app-start/app/database/mysql"
+
+	// "gin-app-start/app/database/mysql"
 	"gin-app-start/app/database/redis"
 	"gin-app-start/app/database/table"
 	"gin-app-start/app/router"
@@ -25,8 +26,8 @@ var Version string
 func main() {
 	log.Printf("Version: %s \n", Version)
 	// 默认使用mysql
-	mysql.Init()
-	defer mysql.DB.Close()
+	// mysql.Init()
+	// defer mysql.DB.Close()
 
 	if config.Conf.AutoMigrate {
 		table.Init()
