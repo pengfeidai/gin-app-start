@@ -1,5 +1,41 @@
-.idea
+# Binaries
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Dependency directories
+vendor/
+
+# Go workspace file
+go.work
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
 .DS_Store
-logs
-.vscode
-out
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Config
+config.local.yaml
+.env
+
+# Build
+dist/
+tmp/
