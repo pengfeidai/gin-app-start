@@ -1,0 +1,42 @@
+server:
+  port: 9060
+  mode: debug
+  read_timeout: 60
+  write_timeout: 60
+  limit_num: 100
+
+database:
+  host: localhost
+  port: 5432
+  user: postgres
+  password: postgres
+  dbname: gin_app
+  sslmode: disable
+  max_idle_conns: 10
+  max_open_conns: 100
+  max_lifetime: 3600
+  log_level: info
+  auto_migrate: true
+
+redis:
+  addr: localhost:6379
+  password: ""
+  db: 0
+  pool_size: 10
+  min_idle_conns: 5
+  max_retries: 3
+
+log:
+  level: debug
+  file_path: logs/app.log
+  max_size: 100
+  max_age: 7
+
+session:
+  key: gin-session
+  max_age: 604800
+  path: /
+  domain: ""
+  http_only: true
+  secure: false
+

@@ -1,0 +1,42 @@
+server:
+  port: 9060
+  mode: release
+  read_timeout: 60
+  write_timeout: 60
+  limit_num: 100
+
+database:
+  host: ${DB_HOST}
+  port: 5432
+  user: ${DB_USER}
+  password: ${DB_PASSWORD}
+  dbname: ${DB_NAME}
+  sslmode: require
+  max_idle_conns: 10
+  max_open_conns: 100
+  max_lifetime: 3600
+  log_level: error
+  auto_migrate: false
+
+redis:
+  addr: ${REDIS_ADDR}
+  password: ${REDIS_PASSWORD}
+  db: 0
+  pool_size: 20
+  min_idle_conns: 10
+  max_retries: 3
+
+log:
+  level: info
+  file_path: /var/log/gin-app/app.log
+  max_size: 100
+  max_age: 30
+
+session:
+  key: gin-session
+  max_age: 604800
+  path: /
+  domain: ""
+  http_only: true
+  secure: true
+
